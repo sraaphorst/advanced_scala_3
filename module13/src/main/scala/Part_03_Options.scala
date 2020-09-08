@@ -3,6 +3,10 @@ object Part_03_Options extends App {
   case class Address(street: String, city: String, state: String, zipCode: String)
   case class Person(first: String, last: String, address: Option[Address])
 
+  // All of these generators should be of the same type, and it will yield that generator.
+  // In this case, Option.
+  // Each of these generators becomes a flatMap except the last, which is a map.
+  // By mixing types, the map / flatMap types don't work.
   def zipForPerson(op: Option[Person]): Option[String] = for {
     p <- op
     a <- p.address
